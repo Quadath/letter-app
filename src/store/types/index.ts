@@ -19,4 +19,17 @@ interface RegisterUserErrorAction {
     errors: any
 }
 
+interface LoginUserAction {
+    type: AuthActionTypes.LOGIN_USER
+}
+interface LoginUserSuccessAction {
+    type: AuthActionTypes.LOGIN_USER_SUCCESS
+    message: string
+}
+interface LoginUserErrorAction {
+    type: AuthActionTypes.LOGIN_USER_ERROR
+    errors: any
+}
+
 export type RegisterAction = RegisterUserAction | RegisterUserSuccessAction | RegisterUserErrorAction
+export type LoginAction = LoginUserAction | LoginUserSuccessAction | LoginUserErrorAction

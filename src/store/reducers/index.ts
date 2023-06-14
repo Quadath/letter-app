@@ -1,6 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import { registerReducer } from './authReducer'
+import { registerReducer } from './registerReducer'
+import { loginReducer } from './loginReducer'
 
 export const rootReducer = combineReducers({
-    register: registerReducer
+    register: registerReducer,
+    login: loginReducer
 })

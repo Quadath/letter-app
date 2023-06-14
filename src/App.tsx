@@ -1,12 +1,11 @@
 import React from 'react';
-import './App.css';
 import { AuthPage } from './pages/AuthPage';
 
 function App() {
   return (
-    <div className="App">
-      <AuthPage/>
-    </div>
+      <div className="bg-slate-800 h-screen overflow-auto">
+        <AuthPage/>
+      </div>
   );
 }
 

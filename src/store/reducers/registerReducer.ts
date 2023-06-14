@@ -24,3 +24,4 @@ export const registerReducer = (state = initialState, action: RegisterAction) : 
             return state;
     }
 }
+
