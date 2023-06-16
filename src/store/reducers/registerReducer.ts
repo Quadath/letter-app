@@ -1,9 +1,9 @@
-import { AuthActionTypes, RegisterAction } from '../types'
+import { AuthActionTypes, RegisterAction } from '../types/AuthTypes'
 
 interface RegisterState {
     message: string
     loading: boolean,
-    errors: null | string[]
+    errors: null | any
 }
 
 const initialState: RegisterState = {
@@ -24,4 +24,3 @@ export const registerReducer = (state = initialState, action: RegisterAction) : 
             return state;
     }
 }
-

@@ -33,3 +33,28 @@ interface LoginUserErrorAction {
 
 export type RegisterAction = RegisterUserAction | RegisterUserSuccessAction | RegisterUserErrorAction
 export type LoginAction = LoginUserAction | LoginUserSuccessAction | LoginUserErrorAction
+
+export enum SessionActionTypes {
+    SESSION_LOAD = 'SESSION_LOAD',
+    SESSION_LOAD_SUCCESS = 'SESSION_LOAD_SUCCESS',
+    SESSION_LOAD_ERROR = 'SESSION_LOAD_ERROR'
+}
+
+interface SessionLoadAction {
+    type: SessionActionTypes.SESSION_LOAD
+}
+interface SessionLoadSuccessAction {
+    type: SessionActionTypes.SESSION_LOAD_SUCCESS
+    user: {
+        name: string
+        username: string
+        bio?: string
+        id: string
+    }
+}
+interface SessionLoadErrorAction {
+    type: SessionActionTypes.SESSION_LOAD_ERROR
+    errors: string[]
+}
+
+export type SessionAction = SessionLoadAction | SessionLoadSuccessAction | SessionLoadErrorAction

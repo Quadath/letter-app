@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTypedSelector } from "../hooks/useTypedSelector"
 import { useAppDispatch } from "../hooks"
-import { LoginRequestBody, loginRequest } from "../features/authService"
+import { LoginRequestBody, loginRequest } from "../services/authService"
 import { SuccessBlock, ErrorBlock } from './AuthPage'
 import { Link } from 'react-router-dom'
 
@@ -35,16 +35,16 @@ export const LoginPage = () => {
             <input className='block w-[200px] p-1 my-0 mx-auto h-7 rounded-md' type="password" id="password" placeholder='Password'
             value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})}/>
 
-            {message == '' && !loading && <button className='block w-[200px] h-10 bg-cyan-500 mt-5 rounded-md mx-auto my-0 text-slate-200 font-bold'
-            onClick={(e) => handleSubmit(formData, e)}>Register</button>}
+            {message === '' && !loading && <button className='block w-[200px] h-10 bg-cyan-500 mt-5 rounded-md mx-auto my-0 text-slate-200 font-bold'
+            onClick={(e) => handleSubmit(formData, e)}>Login</button>}
 
-            {message != '' && errors == null && <SuccessBlock text="Successfully logged in!"/>}
+            {message !== '' && errors == null && <SuccessBlock text="Successfully logged in!"/>}
             {loading && <p className='text-center font-bold text-slate-200'>loading...</p>}
-            {errors != null && <ErrorBlock text="An error has occured."/>}
-            
+            {errors != null && <ErrorBlock text={errors.errors[0]?.msg}/>}
+
             <p className='block text-slate-300 font-thin text-center pt-3 text-sm/[10px] mx-auto'>
                 Do not have account yet?
-                <Link className="text-cyan-500" to='/auth/register'>Login</Link>
+                <Link className="text-cyan-500" to='/auth/register'> Register</Link>
             </p>
         </form>
     )

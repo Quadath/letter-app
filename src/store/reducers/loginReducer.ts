@@ -1,9 +1,9 @@
-import { AuthActionTypes, LoginAction } from '../types'
+import { AuthActionTypes, LoginAction } from '../types/AuthTypes'
 
 interface LoginState {
     message: string
     loading: boolean,
-    errors: null | string[]
+    errors: null | any
 }
 
 const initialState: LoginState = {
@@ -24,4 +24,3 @@ export const loginReducer = (state = initialState, action: LoginAction) : LoginS
             return state;
     }
 }
-
