@@ -17,14 +17,13 @@ function App() {
 
   
   useEffect(() => {
-    dispatch({type: UserFetchActionTypes.USER_FETCH_LOADING})
     dispatch(getCurrentUser())
   }, [])
 
   return (
     <Router>
       <div className="bg-neutral-900 h-screen overflow-auto">
-      <Header user={user == null ? 'Guest' : user.name} link={user == null ? 'auth/register' : `users/${user.username}`}/>
+      <Header user={currentUser == null ? 'Guest' : currentUser.name} link={currentUser == null ? 'auth/register' : `users/${currentUser.username}`}/>
         <Routes>
           <Route path="auth" element={<Outlet/>}>
               <Route path="register" element={<RegisterPage/>}/>
