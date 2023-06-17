@@ -7,7 +7,7 @@ export const getUserByUsername = (username: string) => {
     return async (dispatch : Dispatch<UserFetchAction>) => {
         try {
             dispatch({type: UserFetchActionTypes.USER_FETCH_LOADING, username})
-            const response = await axios.get(`${API_URL}/users/${username}`, {withCredentials: true})
+            const response = await axios.get(`${API_URL}/user/${username}`, {withCredentials: true})
             dispatch({
                 type: UserFetchActionTypes.USER_FETCH_SUCCESS, user: response.data,
             })

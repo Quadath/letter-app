@@ -9,31 +9,47 @@ export const UserPage = (props: {current: {name: string, username: string, id:st
     const dispatch = useAppDispatch()
     const current = props.current;
 
-    const user = useParams()['username'];
-    useEffect(() => {
-        if (user === undefined) return;
-        dispatch(getUserByUsername(user))
-    }, [user])
+    
+    let username : string;
+    {
+        const u = useParams()['username'];
+        username = u === undefined ? '' : u;
+    }
 
-    if(user == null) return (
-        <div className="w-[500px] mx-auto mt-10 p-5 bg-neutral-700 rounded-xl">
-            <p className="text-slate-200 text-lg">Error: no user</p>
+    useEffect(() => {
+        if (state[username] === undefined) {
+            dispatch(getUserByUsername(username))
+        }
+    }, [username])
+    
+    const state = useTypedSelector(state => state.users)
+    
+    let same = false 
+
+    if (state[username] === undefined) return (
+        <div className="sm: container mx-auto mt-10 p-5 bg-neutral-700 rounded-xl">
+            <p className="text-slate-200 text-lg">Error: no data</p>
         </div>
     )
 
-    // let same = false;
-    // if (user != null && current != null && user.id === current.id) {
-    //     same = true;
-    // }
+    const {user, loading, error} = state[username]
 
-    // return (
-    //     <div className="w-[500px] mx-auto mt-10 p-5 bg-neutral-700 rounded-xl">
-    //         <p className="text-slate-200 text-lg">{user.name}</p>
-    //         <span className="">{user.bio} {same && <p>edit</p>}</span>
-    //     </div>
-    // )
+    if(user == null) return (
+        <div className="sm: container mx-auto mt-10 p-5 bg-neutral-700 rounded-xl">
+            <p className="text-slate-200 text-lg">Error: no user</p>
+            <p className="text-red-500">{error?.message}</p>
+        </div>
+    )
+
+    if (user != null && current !== null) {
+       same = username === current.username;
+    }
 
     return (
-        <p>Error</p>
+        <div className="sm: container mx-auto mt-10 p-5 bg-neutral-700 rounded-xl">
+            {loading && <p className="text-white">loading...</p>}
+            <p className="text-slate-200 text-lg">{user.name}</p>
+            <span className="">{user.bio} {same && <p>edit</p>}</span>
+        </div>
     )
 }
