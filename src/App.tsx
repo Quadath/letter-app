@@ -9,6 +9,7 @@ import { Header } from './components/Header';
 import { getCurrentUser } from './services/authService';
 import { UserPage } from './pages/UserPage';
 import { UserFetchActionTypes } from './store/types/UserTypes';
+import { UserSearch } from './pages/UserSearch';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="login" element={<LoginPage/>}/>
           </Route>
           <Route path="users/:username" element={<UserPage current={currentUser}/>}/>
+          <Route path="users" element={<UserSearch/>}/>
         </Routes>
       </div>
     </Router>
